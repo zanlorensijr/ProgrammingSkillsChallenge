@@ -4,19 +4,19 @@
 
 
 #include <iostream>
-#include <string>
+#include <sstream>
 
 int main()
 {
-    std::string output;
+    std::ostringstream output;
     for (int i = 1; i <= 100; i++)
     {
-        if (!(i % 3)) output += "Foo"; //if the ith value if multiple of 3, add "Foo" to output
-        if (!(i % 5)) output += "Baa";  //if the ith value if multiple of 5, add "Baa" to output
+        if (i % 3 == 0) output << "Foo";
+        if (i % 5 == 0) output << "Baa";
 
-        if (output.empty()) output=std::to_string(i); //if output is empty, just print the ith value
-        std::cout << output << std::endl;
-		output.clear(); //clear the output for the next iteration
+        if (output.str().empty()) output << i;
+        std::cout << output.str() << std::endl;
+        output.str(""); // Clear the output for the next iteration
     }
     return 0;
 }
